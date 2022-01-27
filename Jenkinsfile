@@ -14,12 +14,14 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'docker run -it --rm tomcat:9.0'
+                sh 'docker build -t hello-world-java-tomcat .'
+                sh 'docker run -d --rm -o 8090:80 hello-world-java-tomcat'
             }
         }
         stage('Test Integration') {
             steps {
-                echo 'si'
+                echo 'Testing app...'
+                sh 'grep Cristo | wget http://localhost:8090/app-web-demo'
             }
         }
     }
