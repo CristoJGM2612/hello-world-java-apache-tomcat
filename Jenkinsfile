@@ -21,7 +21,7 @@ pipeline {
         stage('Test Integration') {
             steps {
                 echo 'Testing app...'
-                sh 'grep Cristo | wget http://localhost:9040/app-web-demo'
+                sh 'wget http://localhost:9040/app-web-demo'
             }
         }
     }
